@@ -22,3 +22,20 @@ body {
   text-align: center;
   font-weight: 700;
 }
+
+.gameWon {
+  background-color: green;
+  color: #fff;
+}
+
+.result {
+  display:none;
+  background-color: #a0a0a0;
+  color:white;
+  text-align: center;
+  width: 480px;
+  height: 40px;
+  padding-top: 16px;
+  margin: auto;
+  border-radius: 5px;
+}
