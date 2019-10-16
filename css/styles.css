@@ -23,8 +23,12 @@ body {
   font-weight: 700;
 }
 
-.gameWon {
+.gameWonO {
   background-color: green;
+  color: #fff;
+}
+.gameWonX {
+  background-color: firebrick;
   color: #fff;
 }
 

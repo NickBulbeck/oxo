@@ -59,21 +59,22 @@ const keepScore = () => {
 const detectWin = () => {
   for (let i = 0; i < currentScores.length; i++) {
     if (currentScores[i] === 3) {
-      announceWin("Noughts",i);
+      announceWin("Noughts",i,"O");
     } else if (currentScores[i] === 30) {
-      announceWin("Crosses",i);
+      announceWin("Crosses",i,"X");
     }
   }
 }
 
-const announceWin = (winningRow,i) => {
+const announceWin = (winningRow,i,winner) => {
+  let winningClass = "gameWon" + winner;
   gameArea.style.pointerEvents = "none"; 
   gameOverDiv = document.getElementsByClassName("result")[0];
   gameOverDiv.textContent = "Game Over - " + winningRow + " won!";
   gameOverDiv.style.display = "block";
   gameOver = true;
   for (let j = 0; j < rows[i].length; j++) {
-    squares[rows[i][j]].classList.add("gameWon");
+    squares[rows[i][j]].classList.add(winningClass);
   }
 }
 
