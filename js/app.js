@@ -21,7 +21,16 @@ let playedSquares = [0,
                      0,
                      0,
                      0];
-
+const rows = [
+              [0,1,2],
+              [3,4,5],
+              [6,7,8],
+              [0,3,6],
+              [1,4,7],
+              [2,5,8],
+              [0,4,8],
+              [6,4,2]
+             ];
 const appTakesATurn = () => {
   let freeSquares = [];
   for (let i = 0; i < playedSquares.length; i++) {
@@ -49,19 +58,23 @@ const keepScore = () => {
 
 const detectWin = () => {
   for (let i = 0; i < currentScores.length; i++) {
-    if (currentScores[i] === 3 || currentScores[i] === 30) {
-      announceWin("**somebody**");
-      gameOver = true;
+    if (currentScores[i] === 3) {
+      announceWin("Noughts",i);
+    } else if (currentScores[i] === 30) {
+      announceWin("Crosses",i);
     }
   }
 }
 
-const announceWin = (winningRow) => {
+const announceWin = (winningRow,i) => {
   gameArea.style.pointerEvents = "none"; 
   gameOverDiv = document.getElementsByClassName("result")[0];
   gameOverDiv.textContent = "Game Over - " + winningRow + " won!";
   gameOverDiv.style.display = "block";
-  // ToDo: pass in an actual row of elements and use element.classList.add("gameWon");
+  gameOver = true;
+  for (let j = 0; j < rows[i].length; j++) {
+    squares[rows[i][j]].classList.add("gameWon");
+  }
 }
 
 gameArea.addEventListener('click', (event) => {
@@ -72,7 +85,7 @@ gameArea.addEventListener('click', (event) => {
   square.textContent = "O"; // Letter O, not zero
   detectWin();
   turns++;
-  if (turns === 9) {
+  if (turns === 9 && !gameOver) {
     alert("Draw!");
   } else if (!gameOver) {
     appTakesATurn();
